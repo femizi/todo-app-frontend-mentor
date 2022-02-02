@@ -6,11 +6,30 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root{
+  --background-color: #fff;
+  --second-bg-color:#fff;
+  --normal-color:hsl(235, 21%, 11%);
+  --button-color:hsl(235, 19%, 35%);
+  --border-color: hsl(234, 39%, 85%);
+  --desktop-bg: url(images/bg-desktop-light.jpg);
+  --mobile-bg:  url(images/bg-mobile-light.jpg);
+  
+}
+.dark-mode{
+  --background-color:hsl(235, 21%, 11%);
+  --second-bg-color:hsl(235, 24%, 19%);
+  --normal-color:hsl(234, 39%, 85%);
+  --button-color:hsl(234, 11%, 52%);
+  --border-color:  hsl(233, 14%, 35%);
+  --desktop-bg: url(images/bg-desktop-dark.jpg);
+  --mobile-bg:  url(images/bg-mobile-dark.jpg);
 
+}
 body{
   font-family: 'Josefin Sans', sans-serif;
   font-size: 18px;
-  color: hsl(235, 21%, 11%);
+  color: var(--normal-color);
 }
 input[text]{
   font: inherit;
@@ -26,30 +45,32 @@ input[type="checkbox"] {
   /* Not removed via appearance */
   margin: 0;
   font: inherit;
-  color: currentColor;
-  width: 1.15em;
-  height: 1.15em;
-  border: 0.15em solid currentColor;
-  border-radius: 50%;
-  transform: translateY(-0.075em);
+  height: 0;
+  width: 0;
   display: grid;
   place-content: center;
 }
-input[type="checkbox"]::before {
-  content: "";
-  width: 0.65em;
-  height: 0.65em;
-  transform: scale(0);
-  transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+
+.checkbox__checkmark:before {
+  
+  border-radius: 50%;
+  border: solid 1px var(--border-color);
+  cursor: pointer;
 }
-input[type="checkbox"]:checked::before {
-  transform: scale(1);
+:checked+.checkbox__checkmark:before{
+  background: linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%));
+}
+input[type="checkbox"]:checked ~ .checkmark{
+  background-color: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
 }
 button{
   font: inherit;
   background: none;
   cursor: pointer;
+  color:hsl(235, 19%, 35%); ;
+}
+button:hover{
+  color: hsl(235, 21%, 11%);
 }
 li{
   list-style: none;
@@ -58,12 +79,13 @@ li{
 .top-grid{
   height: 100vh;
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   padding: 0 5vw;
+  background-color: var(--background-color);
 }
 .shiny-background{
-  background: url(images/bg-desktop-light.jpg);
-  background-position: cover;
+  background: var(--desktop-bg);
+  background-position: contain;
 }
 h1{
   color: white;
@@ -74,7 +96,7 @@ h1{
 }
 .absolute{
   position: absolute;
-  top: 30%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
  
@@ -86,20 +108,22 @@ h1{
   display: flex;
   justify-content: space-between;
   align-content: center;
-  color: white;
+  color: var(--background-color);
 }
 .search-container input{
   width: 100%;
   padding: 15px;
   margin-bottom: 15px;
+  background: var(--second-bg-color);
   border-radius: var(--radius-2);
+  color: var(--normal-color);
 }
 .todo-lists{
   /* transform: translateY(20px); */
   padding: 10px;
-  /*  */
+  
   border-radius: var(--radius-2);
-  background: white;
+  background: var(--second-bg-color);
   box-shadow: var(--shadow-4);
  
 }
@@ -109,9 +133,15 @@ h1{
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
-  border-bottom: solid 1px  hsl(234, 39%, 85%);
+  border-bottom: solid 1px  var(--border-color);
+  position: relative;
 }
-
+.delete-img{
+  height: 22px;
+}
+.canceled{
+  text-decoration: line-through;
+}
 .todo-footer{
   display: flex;
   justify-content: space-between;
@@ -120,6 +150,15 @@ h1{
 .group-btn{
   display: flex;
   gap: 5px;
+}
+.second-group-btn{
+  display: none;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0;
+  border-radius: var(--radius-2);
+  background: var(--second-bg-color);
 }
 .hint{
   display: grid;
@@ -133,4 +172,21 @@ h1{
 }
 .attribution a {
   color: hsl(228, 45%, 44%);
+}
+@media only screen and (max-width: 700px){
+  .group-btn{
+    display: none;
+  }
+  .second-group-btn{
+    display: flex;
+  }
+}
+@media only screen and (max-width: 400px){
+  .top-grid{
+    padding: 0;
+  }
+  .shiny-background{
+    background: var(--mobile-bg);
+  }
+ 
 }
