@@ -9,35 +9,30 @@ const TodoLists = () => {
     setData(data.filter((x) => x.id !== id));
   };
   length = data.length;
+  const handleEnd = (result) => {
+    console.log(result);
+    if (!result.destination) return; //if no destination exits(cancel event), exit this function
+    const items = Array.from(data);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setData(items);
+  };
   return (
     <>
       <div className="todo-lists">
-        <DragDropContext>
+        <DragDropContext onDragEnd={handleEnd}>
           <Droppable droppableId="to-dos">
             {(provided) => (
               <ul {...provided.droppableProps} ref={provided.innerRef}>
                 {data.map((data, index) => (
-                  <Draggable
+                  <Todo
                     key={data.id}
-                    draggableId={data.id.toString()}
+                    item={data}
+                    deleteItem={deleteItem}
                     index={index}
-                  >
-                    {(provided, snapshot) => (
-                      <Todo
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                        key={data.id}
-                        item={data}
-                        deleteItem={deleteItem}
-                        index={index}
-                        className={
-                          snapshot.isDragging ? "selected" : "not-selected"
-                        }
-                      />
-                    )}
-                  </Draggable>
+                  />
                 ))}
+                {provided.placeholder}
               </ul>
             )}
           </Droppable>

@@ -1,13 +1,12 @@
 import React, { useRef } from "react";
 import { Draggable } from "react-beautiful-dnd";
-const Todo = ({ item, deleteItem }) => {
-  const innerRef = useRef();
+const Todo = ({ item, deleteItem, index }) => {
   return (
-    <Draggable>
+    <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
       {(provided, snapshot) => (
         <li
           {...provided.draggableProps}
-          innerRef={provided.innerRef}
+          ref={provided.innerRef}
           {...provided.dragHandleProps}
           className={
             snapshot.isDragging ? "selected todo" : "not-selected todo"
