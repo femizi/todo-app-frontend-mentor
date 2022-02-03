@@ -1,6 +1,4 @@
-import React from "react";
-
-const Header = () => {
+const Header = ({ handleClick, image1, image2, theme }) => {
   return (
     <div className="header">
       <div>
@@ -8,8 +6,8 @@ const Header = () => {
       </div>
 
       <div>
-        <button>
-          <img src="src\images\icon-moon.svg" alt="" />
+        <button onClick={(e) => handleClick(e)}>
+          <img src={theme ? image1 : image2} alt="theme" />
         </button>
       </div>
     </div>

@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+
 import { Draggable } from "react-beautiful-dnd";
-const Todo = ({ item, deleteItem, index }) => {
+const Todo = ({ item, deleteItem, index, completedChecked }) => {
   return (
     <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
       {(provided, snapshot) => (
@@ -13,7 +13,9 @@ const Todo = ({ item, deleteItem, index }) => {
           }
         >
           <label className="checkbox">
-            <input type="checkbox" className="checkbox__input" />
+            <input type="checkbox" 
+            // onChange={()=> completedChecked(item.id)} 
+            className="checkbox__input" />
             <div className="checkbox__checkmark"></div>
           </label>
           {item.name}
