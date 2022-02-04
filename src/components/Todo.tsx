@@ -14,11 +14,12 @@ const Todo = ({ item, deleteItem, index, completedChecked }) => {
         >
           <label className="checkbox">
             <input type="checkbox" 
-            // onChange={()=> completedChecked(item.id)} 
+            onChange={()=> completedChecked(item.id)} 
             className="checkbox__input" />
             <div className="checkbox__checkmark"></div>
           </label>
-          {item.name}
+          <span className={item.complete? "canceled": ""}> {item.name}</span>
+          
           <button onClick={() => deleteItem(item.id)}>
             <img
               src="src\images\icon-cross.svg"

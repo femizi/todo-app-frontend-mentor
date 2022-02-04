@@ -72,6 +72,10 @@ button{
 button:hover{
   color: hsl(235, 21%, 11%);
 }
+
+.blue{
+  color:hsl(220, 98%, 61%);
+}
 li{
   list-style: none;
 }

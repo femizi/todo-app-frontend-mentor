@@ -29,12 +29,12 @@ const TodoLists = () => {
     return data.map((item) => {
       if(item.id === id){
         item.complete = !item.complete
-        console.log(item.id)
+        console.log(item)
       }return item
     })
   }
- function completedChecked (localData) {
-   setlocalData(updateData(localData))
+ function completedChecked (id) {
+   setlocalData(updateData(id))
  }
   const handleEnd = (result) => {
     console.log(result);
@@ -71,7 +71,7 @@ const TodoLists = () => {
             <button>{length} items left</button>
           </div>
           <div className="group-btn">
-            <button>All</button>
+            <button className="blue">All</button>
             <button>Active</button>
 
             <button>Completed</button>
@@ -82,7 +82,7 @@ const TodoLists = () => {
         </div>
       </div>
       <div className="second-group-btn">
-        <button>All</button>
+        <button className="blue">All</button>
         <button>Active</button>
         <button>Completed</button>
       </div>
