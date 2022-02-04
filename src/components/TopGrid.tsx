@@ -10,8 +10,8 @@ function handleClick(e ){
   settheme(!theme)
   
 }
-let image1 = "src/images/icon-moon.svg"
-let image2 = "src/images/icon-sun.svg"
+let image1 = "images/icon-moon.svg"
+let image2 = "images/icon-sun.svg"
   return (
     <div className={theme? "top-grid": "top-grid dark-mode"}>
       <div className="shiny-background"></div>
