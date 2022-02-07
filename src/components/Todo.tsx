@@ -22,7 +22,7 @@ const Todo = ({ item, deleteItem, index, completedChecked }) => {
           
           <button onClick={() => deleteItem(item.id)}>
             <img
-              src="src\images\icon-cross.svg"
+              src="assets/images/icon-cross.svg"
               className="delete-img"
               alt="delete"
             />

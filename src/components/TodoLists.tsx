@@ -6,6 +6,7 @@ import { DataContext } from "../MyContext";
 const TodoLists = () => {
   const [data, setData] = useContext(DataContext);
   const [localData, setlocalData] = useState([]);
+  const [render, setrender] = useState("all");
   let length = 0
   useEffect(()=>{
     if (data.length=== 0){
@@ -25,6 +26,14 @@ const TodoLists = () => {
   const deleteItem = (id: string) => {
     setData(data.filter((x) => x.id !== id));
   };
+  const isCompleted = () => data.filter(item => !item.complete)
+
+const deleteCompleted = ()=>{
+    
+    setData(isCompleted)
+    
+    
+  }
   const updateData = (id:string) =>{
     return data.map((item) => {
       if(item.id === id){
@@ -52,14 +61,15 @@ const TodoLists = () => {
             {(provided) => (
               <ul {...provided.droppableProps} ref={provided.innerRef}>
                 {data.map((localData, index) => (
-                  <Todo
-                  completedChecked={completedChecked}
-                    key={localData.id}
-                    item={localData}
-                    deleteItem={deleteItem}
-                    index={index}
-                  />
-                ))}
+                    <Todo
+                    completedChecked={completedChecked}
+                      key={localData.id}
+                      item={localData}
+                      deleteItem={deleteItem}
+                      index={index}
+                    />
+                  ))}
+                  
                 {provided.placeholder}
               </ul>
             )}
@@ -74,10 +84,14 @@ const TodoLists = () => {
             <button className="blue">All</button>
             <button>Active</button>
 
-            <button>Completed</button>
+            <button
+             onClick={()=>{deleteCompleted()}}
+            >Completed</button>
           </div>
           <div>
-            <button>Clear Completed</button>
+            <button 
+            onClick={()=>{deleteCompleted()}}
+            >Clear Completed</button>
           </div>
         </div>
       </div>
