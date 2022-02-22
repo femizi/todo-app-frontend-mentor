@@ -6,6 +6,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+html{
+  height: 100%;
+  width: 100%;
+}
 :root{
   --background-color: #fff;
   --second-bg-color:#fff;
@@ -30,6 +34,9 @@ body{
   font-family: 'Josefin Sans', sans-serif;
   font-size: 18px;
   color: var(--normal-color);
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
 }
 input[text]{
   font: inherit;
@@ -67,7 +74,7 @@ button{
   font: inherit;
   background: none;
   cursor: pointer;
-  color:hsl(235, 19%, 35%); ;
+  color: var(--normal-color);
 }
 button:hover{
   color: hsl(235, 21%, 11%);
@@ -81,15 +88,25 @@ li{
 }
 
 .top-grid{
-  height: 100vh;
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
+ 
+
+  width: 100%;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  
   padding: 0 5vw;
   background-color: var(--background-color);
+  overflow-y: scroll;
 }
 .shiny-background{
   background: var(--desktop-bg);
+  height: 30%;
   background-position: contain;
+  display: grid;
+  place-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 h1{
   color: white;
@@ -99,25 +116,27 @@ h1{
   font-size: 2.2rem;
 }
 .absolute{
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  flex: auto;
+display: grid;
+place-items: center;
  
 }
 .container-grid{
   width: var(--size-fluid-10);
+  margin-top: -10px;
+ 
 }
 .header{
   display: flex;
   justify-content: space-between;
   align-content: center;
+  width: var(--size-fluid-10);
   color: var(--background-color);
 }
 .search-container input{
-  width: 100%;
+  width: var(--size-fluid-10);
   padding: 15px;
-  margin-bottom: 15px;
+  
   background: var(--second-bg-color);
   border-radius: var(--radius-2);
   color: var(--normal-color);
@@ -125,7 +144,7 @@ h1{
 .todo-lists{
   /* transform: translateY(20px); */
   padding: 10px;
-  
+  color: var(--normal-color);
   border-radius: var(--radius-2);
   background: var(--second-bg-color);
   box-shadow: var(--shadow-4);
@@ -154,6 +173,7 @@ h1{
 .group-btn{
   display: flex;
   gap: 5px;
+  color: var(--normal-color);
 }
 .second-group-btn{
   display: none;
@@ -183,6 +203,9 @@ h1{
   }
   .second-group-btn{
     display: flex;
+    box-shadow: var(--shadow-4);
+    color: var(--normal-color);
+    
   }
 }
 @media only screen and (max-width: 400px){

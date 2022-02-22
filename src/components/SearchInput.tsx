@@ -6,6 +6,7 @@ import { DataContext } from "../MyContext";
 const SearchInput = () => {
   const [data, setData] = useContext(DataContext);
   function handleSubmit(e) {
+    if ((e.target as HTMLInputElement).value === "") return 
     setData([...data, { id, name: (e.target as HTMLInputElement).value, complete: false }]);
     (e.target as HTMLInputElement ).value = "";
   }
